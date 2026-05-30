@@ -2,7 +2,7 @@
 
 > An AI-powered movie recommendation platform that combines semantic search, hybrid recommendations, collaborative filtering, and user taste learning to deliver highly personalized movie discovery.
 
-![Architecture Overview](images/architecture-overview.png)
+![Architecture Overview](Assets/ChatGPT Image May 30, 2026, 09_56_55 PM.png)
 
 ## Overview
 
