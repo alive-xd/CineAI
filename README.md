@@ -62,14 +62,14 @@ CineAI:      Encodes query → searches 384-dim vector space → retrieves seman
 <td width="50%">
 
 **Home & Recommendations**
-![Home Dashboard](Assets/home-dashboard.png)
+![Home Dashboard](Assets/Screenshot%202026-05-31%20224449.png)
 *Personalised AI recommendations with match scores and reasoning*
 
 </td>
 <td width="50%">
 
 **Semantic Search**
-![Semantic Search](Assets/semantic-search.png)
+![Semantic Search](Assets/Screenshot%202026-05-31%20224733.png)
 *Natural language movie discovery powered by vector embeddings*
 
 </td>
@@ -78,14 +78,14 @@ CineAI:      Encodes query → searches 384-dim vector space → retrieves seman
 <td width="50%">
 
 **Movie Details**
-![Movie Details](Assets/movie-details.png)
+![Movie Details](Assets/Screenshot%202026-05-31%20224558.png)
 *Rich movie information with AI insights and similar movies*
 
 </td>
 <td width="50%">
 
 **Taste Analytics**
-![Taste Analytics](Assets/taste-analytics.png)
+![Taste Analytics](Assets/Screenshot%202026-05-29%20141152.png)
 *AI-computed taste fingerprint with genre radar and engine weights*
 
 </td>
