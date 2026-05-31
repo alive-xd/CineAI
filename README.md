@@ -96,7 +96,7 @@ CineAI:      Encodes query → searches 384-dim vector space → retrieves seman
 
 ## System Architecture
 
-![CineAI System Architecture](Assets/CineAI/blob/8cfbd8b241591978672d4a69b47061a4ccdf47d4/Assets/ChatGPT%20Image%20May%2031%2C%202026%2C%2010_04_44%20PM.png)
+![CineAI System Architecture](Assets/blob/8cfbd8b241591978672d4a69b47061a4ccdf47d4/Assets/ChatGPT%20Image%20May%2031%2C%202026%2C%2010_04_44%20PM.png)
 
 The platform is built on a clean layered architecture separating the frontend presentation layer, FastAPI backend, ML/AI pipeline, and data infrastructure — each independently scalable and maintainable.
 
