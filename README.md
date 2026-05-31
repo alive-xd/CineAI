@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="Assets/cineai-logo.png" alt="CineAI Logo" width="80" height="80" />
 
-# CineAI
+
+# CineAI 
 
 ### AI-Powered Movie Recommendation Platform
 
