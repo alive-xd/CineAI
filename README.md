@@ -104,7 +104,7 @@ The platform is built on a clean layered architecture separating the frontend pr
 
 ## AI Recommendation Pipeline
 
-![AI Recommendation Pipeline](Assets/ChatGPT_Image_May_30__2026__10_56_15_PM.png)
+![AI Recommendation Pipeline](Assets/ChatGPT%20Image%20May%2031%2C%202026%2C%2010_23_28%20PM.png)
 
 Every recommendation passes through a 9-stage pipeline — from raw user input through embedding generation, vector retrieval, hybrid scoring, diversity re-ranking, to final personalised output — with a continuous learning loop that improves over time.
 
