@@ -272,9 +272,9 @@ CineAI/
 
 <img src="https://avatars.githubusercontent.com/sushen-kumar" alt="Sushen Kumar" width="80" style="border-radius: 50%;" />
 
-**Sushen Kumar** — Full-Stack Developer · AI/ML Engineer · Cybersecurity Researcher
+## **Sushen Kumar** — Cybersecurity Researcher · Security Automation Engineer · AI Engineer
 
-I build intelligent software systems focused on AI, recommendation engines, cybersecurity tooling, and scalable backend architectures.
+Building intelligent security systems at the intersection of cybersecurity, automation, and artificial intelligence. Specialized in threat intelligence platforms, security tooling, AI-driven analysis, and scalable backend architectures designed to improve detection, investigation, and response capabilities across modern environments.
 
 CineAI showcases modern recommendation system design using semantic retrieval, vector databases, hybrid ranking, explainable AI, and adaptive user preference learning.
 
