@@ -31,11 +31,11 @@
 
 ## What is CineAI?
 
-CineAI is a production-grade, full-stack AI movie recommendation platform built from scratch. It combines **semantic vector search**, **hybrid recommendation algorithms**, **collaborative filtering**, and **explainable AI** to deliver highly personalised movie discovery experiences.
+CineAI is a production-grade, full-stack AI movie recommendation platform built from scratch. It combines semantic vector search, hybrid recommendation algorithms, collaborative filtering, and explainable AI to deliver highly personalised movie discovery experiences.
 
 Unlike traditional movie platforms that rely on keyword matching or simple genre filters, CineAI understands natural language queries, learns user taste over time, and explains every recommendation it makes.
 
-```
+```text
 User types:  "something emotional and mind-bending like Interstellar"
 CineAI:      Encodes query → searches 384-dim vector space → retrieves semantically
              similar movies → ranks using hybrid engine → returns with explanations
@@ -45,13 +45,12 @@ CineAI:      Encodes query → searches 384-dim vector space → retrieves seman
 
 ## Key Achievements
 
-- Built a hybrid recommendation engine combining semantic, content-based, collaborative, and popularity-based recommendation signals
-- Implemented vector-based semantic search using SentenceTransformers and Qdrant
-- Designed adaptive user taste learning powered by ratings, watchlists, and interaction history
-- Developed explainable recommendations through score attribution and recommendation reasoning
-- Integrated PostgreSQL, Redis, and Qdrant into a production-oriented AI architecture
-- Containerized the complete platform using Docker Compose
-- Designed a scalable FastAPI service architecture with clear separation of business logic, machine learning components, and API layers
+- **Hybrid Recommendation Engine:** Combined semantic, content-based, collaborative, and popularity-based recommendation signals into a single, cohesive ranking model.
+- **Semantic Vector Search:** Implemented natural language search using SentenceTransformers and Qdrant.
+- **Adaptive Taste Learning:** Designed a system that continuously updates user profiles based on ratings, watchlists, and interaction history.
+- **Transparent Explainability:** Developed an attribution layer that translates mathematical scores into human-readable recommendation reasoning.
+- **Production Architecture:** Integrated PostgreSQL, Redis, and Qdrant into a robust, Dockerized environment.
+- **Scalable Service Design:** Built a FastAPI backend with strict separation of business logic, machine learning pipelines, and API routing.
 
 ---
 
@@ -125,33 +124,33 @@ Final Score = (0.35 × Semantic) + (0.30 × Content) + (0.25 × Collaborative) +
 
 ---
 
-## ✨ Core Capabilities
+## Core Capabilities
 
-### 🔍 Conversational Semantic Search
+### Conversational Semantic Search
 Break free from rigid keyword constraints. Search for movies exactly how you would describe them to a friend. We instantly encode your query into a 384-dimensional vector space to find the perfect semantic match.
 
 > **"mind-bending thriller"** → *Inception, Memento, Shutter Island* <br/>
 > **"movies about loneliness"** → *Her, Lost in Translation, Aftersun* <br/>
 > **"emotional sci-fi about grief"** → *Annihilation, Arrival, Melancholia*
 
-### 🤖 Adaptive Hybrid Engine
+### Adaptive Hybrid Engine
 Why rely on one algorithm when you can have an ensemble? CineAI dynamically fuses four distinct recommendation signals (Semantic, Content, Collaborative, and Popularity), automatically adjusting the mathematical weights to perfectly align with your unique cinematic taste.
 
-### 💡 Transparent Explainability
+### Transparent Explainability
 No more "black box" suggestions. Every movie recommendation comes with clear, human-readable reasoning drawn directly from the underlying algorithmic score attributions.
 
 > ✦ *Matches your deep appreciation for philosophical Sci-Fi* <br/>
 > ✦ *Directed by Denis Villeneuve — a filmmaker you consistently rate highly* <br/>
 > ✦ *Shares a similar emotional tone with movies you've rated 4.5+*
 
-### 🧠 Continuous Taste Learning
+### Continuous Taste Learning
 Your profile is a living, breathing entity. Every rating, watchlist addition, and dismissal continuously refines your:
-- **Genre & Director Affinities**
-- **Mood Tag Preferences**
-- **Semantic Centroid** *(The weighted mathematical center of your favourite films)*
+- Genre and Director Affinities
+- Mood Tag Preferences
+- Semantic Centroid (the mathematical center of your favourite films)
 
-### ❄️ Intelligent Cold-Start Resolution
-A seamless onboarding experience. Brand new users are greeted with a curated blend of trending and universally acclaimed titles. Once 5 ratings are collected, the full machine learning pipeline seamlessly takes over.
+### Intelligent Cold-Start Resolution
+A seamless onboarding experience. Brand new users are greeted with a curated blend of trending and universally acclaimed titles. Once enough ratings are collected, the full machine learning pipeline seamlessly takes over.
 
 ---
 
@@ -159,13 +158,13 @@ A seamless onboarding experience. Brand new users are greeted with a curated ble
 
 | Metric | Value |
 |--------|-------|
-| Movies indexed | 2,992 |
-| Semantic vectors in Qdrant | 1,439 |
-| Embedding dimensions | 384 (all-MiniLM-L6-v2) |
-| Recommendation cache TTL | 1 hour (Redis) |
-| API endpoints | 18 |
-| Database tables | 10 |
-| Hybrid signals | 4 |
+| **Movies Indexed** | 2,992 |
+| **Semantic Vectors** | 1,439 |
+| **Embedding Dimensions** | 384 (all-MiniLM-L6-v2) |
+| **Cache TTL** | 1 hour (Redis) |
+| **API Endpoints** | 18 |
+| **Database Tables** | 10 |
+| **Hybrid Signals** | 4 |
 
 ---
 
@@ -173,40 +172,40 @@ A seamless onboarding experience. Brand new users are greeted with a curated ble
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Frontend** | Next.js 14, TypeScript, Tailwind CSS | App Router, SSR, UI |
-| **State** | Zustand, SWR | Auth state, data fetching |
-| **Backend** | FastAPI, Python 3.11 | Async API, ML orchestration |
-| **Database** | PostgreSQL 16 (Supabase) | Primary data store |
+| **Frontend** | Next.js 14, TypeScript, Tailwind CSS | App Router, SSR, Responsive UI |
+| **State Management** | Zustand, SWR | Client state, data fetching |
+| **Backend** | FastAPI, Python 3.11 | Async REST API, ML orchestration |
+| **Database** | PostgreSQL 16 (Supabase) | Primary relational data store |
 | **Vector DB** | Qdrant | Semantic search, ANN retrieval |
-| **Cache** | Redis (Upstash) | Recommendation cache, rate limiting |
-| **Embeddings** | sentence-transformers (all-MiniLM-L6-v2) | 384-dim movie vectors |
-| **Collaborative** | scikit-surprise (SVD) | Matrix factorisation |
-| **Content** | scikit-learn (TF-IDF) | Metadata similarity |
-| **Movie Data** | TMDb API | Movie metadata, posters |
-| **Infra** | Docker Compose | Local orchestration |
-| **Auth** | JWT + httpOnly refresh tokens | Secure authentication |
+| **Cache** | Redis (Upstash) | Recommendation caching, rate limiting |
+| **Embeddings** | sentence-transformers | 384-dim dense movie vectors |
+| **Collaborative** | scikit-surprise | SVD matrix factorisation |
+| **Content Filtering**| scikit-learn | TF-IDF metadata similarity |
+| **Data Provider** | TMDb API | Movie metadata, posters |
+| **Infrastructure** | Docker Compose | Local container orchestration |
+| **Security** | JWT + httpOnly cookies | Secure refresh-token authentication |
 
 ---
 
 ## Technical Challenges Solved
 
 ### Semantic Retrieval Without GPU
-Running `all-MiniLM-L6-v2` fully on CPU with batch encoding and async Qdrant upserts — no GPU required, deployable on free-tier instances (512MB RAM).
+Running `all-MiniLM-L6-v2` fully on CPU with batch encoding and asynchronous Qdrant upserts. This approach completely eliminates the need for expensive GPU instances, allowing deployment on standard free-tier servers (e.g., 512MB RAM) without sacrificing latency.
 
 ### Hybrid Fusion with Explainability
-Each of the 4 recommendation signals returns a normalised 0–1 score. The hybrid ranker fuses them with per-user learned weights, and the explainability layer attributes the dominant signal to generate human-readable reasons — not post-hoc rationalisation, but direct score attribution.
+Each of the four recommendation signals returns a normalised 0–1 score. The hybrid ranker fuses them with per-user learned weights, and the explainability layer attributes the dominant signal to generate human-readable reasons. This provides direct score attribution rather than post-hoc rationalisation.
 
 ### Adaptive Per-User Weights
-Instead of global recommendation weights, each user's hybrid formula adapts using Exponential Moving Average updates triggered by feedback actions. A user who consistently dismisses popularity-driven recommendations will see that weight decrease automatically.
+Instead of applying global recommendation weights, each user's hybrid formula adapts using Exponential Moving Average (EMA) updates triggered by feedback actions. A user who consistently dismisses popularity-driven recommendations will see that signal's weight decrease automatically.
 
 ### Cold-Start Problem
-Three-tier fallback: trending movies → genre-affinity fallback → full ML pipeline (activates at 5+ ratings). No user ever sees an empty recommendation page.
+Implemented a three-tier fallback mechanism: trending movies → genre-affinity fallback → full ML pipeline (which activates at 5+ ratings). This guarantees that no user ever sees an empty recommendation page.
 
 ### Vector Database on Free Tier
-Qdrant's `indexing_threshold` is set to 20,000 vectors. Below this, vectors are stored and searchable in O(n) mode without ANN indexing — functional at current dataset scale, automatically upgrades to HNSW index as data grows.
+Qdrant's `indexing_threshold` is deliberately set to 20,000 vectors. Below this threshold, vectors are stored and searchable in O(n) mode without memory-intensive ANN indexing. This is perfectly functional at the current dataset scale and automatically upgrades to an HNSW index as the dataset grows.
 
 ### TMDb Access from Restricted Networks
-External HTTPS connectivity issues solved via Cloudflare Worker proxy — zero additional cost, routes all TMDb API calls through a globally distributed edge network.
+External HTTPS connectivity issues were resolved by implementing a Cloudflare Worker proxy. This incurs zero additional cost while routing all TMDb API calls through a globally distributed edge network, ensuring high availability.
 
 ---
 
@@ -223,55 +222,55 @@ A key focus of this project was to avoid over-engineering while building a produ
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
-A clean, deeply decoupled layered architecture separating the Next.js presentation layer, FastAPI service backend, and ML pipeline.
+A deeply decoupled layered architecture separating the Next.js presentation layer, FastAPI service backend, and ML pipeline.
 
 ```text
-📦 CineAI
- ┣ 📂 backend/               # FastAPI Application & ML Pipeline
- ┃ ┣ 📂 alembic/             # Database migrations
- ┃ ┣ 📂 app/
- ┃ ┃ ┣ 📂 api/               # REST endpoints (auth, movies, search, recs)
- ┃ ┃ ┣ 📂 core/              # Database, Redis, security, exceptions
- ┃ ┃ ┣ 📂 ml/
- ┃ ┃ ┃ ┣ 📂 embeddings/      # Encoder, pipeline, user profile centroid
- ┃ ┃ ┃ ┣ 📂 explainability/  # Score attribution → human reasoning
- ┃ ┃ ┃ ┣ 📂 feedback/        # Adaptive weight updater (EMA)
- ┃ ┃ ┃ ┗ 📂 recommenders/    # Semantic, content, collaborative, hybrid
- ┃ ┃ ┣ 📂 models/            # SQLAlchemy ORM (10 tables)
- ┃ ┃ ┣ 📂 schemas/           # Pydantic v2 schemas
- ┃ ┃ ┗ 📂 services/          # Business logic layer
- ┃ ┗ 📜 requirements.txt
- ┣ 📂 frontend/              # Next.js 14 Application
- ┃ ┗ 📂 src/
- ┃   ┣ 📂 app/               # App Router & Pages
- ┃   ┣ 📂 components/        # Reusable UI components
- ┃   ┣ 📂 hooks/             # SWR data fetching hooks
- ┃   ┣ 📂 lib/               # Typed API client & utilities
- ┃   ┗ 📂 store/             # Zustand global state
- ┣ 📂 scripts/               # Bootstrapping & seeding utilities
- ┣ 📂 assets/                # Documentation assets
- ┗ 📜 docker-compose.yml     # Complete stack orchestration
+CineAI/
+├── backend/                  # FastAPI Application & ML Pipeline
+│   ├── alembic/              # Database migrations
+│   ├── app/
+│   │   ├── api/              # REST endpoints (auth, movies, search, recs)
+│   │   ├── core/             # Database, Redis, security, exceptions
+│   │   ├── ml/
+│   │   │   ├── embeddings/   # Encoder, pipeline, user profile centroid
+│   │   │   ├── explainability/# Score attribution → human reasoning
+│   │   │   ├── feedback/     # Adaptive weight updater (EMA)
+│   │   │   └── recommenders/ # Semantic, content, collaborative, hybrid
+│   │   ├── models/           # SQLAlchemy ORM (10 tables)
+│   │   ├── schemas/          # Pydantic v2 schemas
+│   │   └── services/         # Business logic layer
+│   └── requirements.txt
+├── frontend/                 # Next.js 14 Application
+│   └── src/
+│       ├── app/              # App Router & Pages
+│       ├── components/       # Reusable UI components
+│       ├── hooks/            # SWR data fetching hooks
+│       ├── lib/              # Typed API client & utilities
+│       └── store/            # Zustand global state
+├── scripts/                  # Bootstrapping & seeding utilities
+├── assets/                   # Documentation assets
+└── docker-compose.yml        # Complete stack orchestration
 ```
 
 ---
 
-## 🚀 Future Roadmap
+## Future Roadmap 🚀
 
 Our vision for the next evolution of CineAI:
 
-- **👥 Social & Collaborative:** User-to-user collaborative filtering, shared watchlists, and friend recommendations.
-- **💬 Conversational UI:** Multi-turn conversational movie discovery ("No, something a bit older than that").
-- **🎭 Enriched Metadata:** Deep emotion, pacing, and tone metadata enrichment.
-- **🧠 Advanced Embeddings:** Upgrading from `all-MiniLM-L6-v2` to `bge-large-en` for even richer semantic comprehension.
-- **📊 Experimentation:** Comprehensive A/B testing framework for evaluating recommendation strategies.
-- **📱 Mobile Experience:** Dedicated React Native application.
-- **⚡ Real-time Updates:** WebSocket integration for instantaneous recommendation refreshes.
+- **Social & Collaborative:** User-to-user collaborative filtering, shared watchlists, and friend recommendations.
+- **Conversational UI:** Multi-turn conversational movie discovery ("No, something a bit older than that").
+- **Enriched Metadata:** Deep emotion, pacing, and tone metadata enrichment.
+- **Advanced Embeddings:** Upgrading from `all-MiniLM-L6-v2` to `bge-large-en` for even richer semantic comprehension.
+- **Experimentation:** Comprehensive A/B testing framework for evaluating recommendation strategies.
+- **Mobile Experience:** Dedicated React Native application.
+- **Real-time Updates:** WebSocket integration for instantaneous recommendation refreshes.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.
 
