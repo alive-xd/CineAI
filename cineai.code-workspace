@@ -1,0 +1,199 @@
+{
+  "folders": [
+    {
+      "name": "🎬 CineAI Root",
+      "path": "."
+    },
+    {
+      "name": "⚙️  Backend (FastAPI)",
+      "path": "./backend"
+    },
+    {
+      "name": "🖥️  Frontend (Next.js)",
+      "path": "./frontend"
+    }
+  ],
+  "settings": {
+    // ── Python (Backend) ──────────────────────────────────────────────────────
+    "python.defaultInterpreterPath": "${workspaceFolder:⚙️  Backend (FastAPI)}/.venv/bin/python",
+    "python.analysis.extraPaths": ["${workspaceFolder:⚙️  Backend (FastAPI)}"],
+    "python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "ms-python.black-formatter",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    },
+
+    // ── TypeScript (Frontend) ─────────────────────────────────────────────────
+    "typescript.tsdk": "${workspaceFolder:🖥️  Frontend (Next.js)}/node_modules/typescript/lib",
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // ── Editor ────────────────────────────────────────────────────────────────
+    "editor.tabSize": 4,
+    "editor.rulers": [88, 120],
+    "editor.minimap.enabled": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.suggest.preview": true,
+    "editor.inlineSuggest.enabled": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // ── File associations ─────────────────────────────────────────────────────
+    "files.associations": {
+      "*.env.example": "dotenv",
+      "*.env.prod.example": "dotenv",
+      "alembic.ini": "ini",
+      "*.conf": "nginx"
+    },
+
+    // ── Exclude from file watcher ─────────────────────────────────────────────
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/.venv": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/.venv": true,
+      "**/__pycache__": true
+    }
+  },
+
+  "extensions": {
+    "recommendations": [
+      // Python
+      "ms-python.python",
+      "ms-python.black-formatter",
+      "ms-python.isort",
+      "ms-python.pylint",
+
+      // TypeScript / React
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "bradlc.vscode-tailwindcss",
+
+      // General
+      "eamodio.gitlens",
+      "PKief.material-icon-theme",
+      "usernamehw.errorlens",
+      "streetsidesoftware.code-spell-checker",
+
+      // Docker
+      "ms-azuretools.vscode-docker",
+
+      // REST client (test APIs without Postman)
+      "humao.rest-client",
+
+      // Database
+      "cweijan.vscode-postgresql-client2",
+
+      // ENV files
+      "mikestead.dotenv"
+    ]
+  },
+
+  // ── Launch configs (F5 to run) ──────────────────────────────────────────────
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "🚀 Backend (uvicorn --reload)",
+        "type": "python",
+        "request": "launch",
+        "module": "uvicorn",
+        "args": ["app.main:app", "--reload", "--port", "8000"],
+        "cwd": "${workspaceFolder:⚙️  Backend (FastAPI)}",
+        "envFile": "${workspaceFolder:⚙️  Backend (FastAPI)}/.env",
+        "console": "integratedTerminal",
+        "justMyCode": true
+      },
+      {
+        "name": "🧪 Backend Tests (pytest)",
+        "type": "python",
+        "request": "launch",
+        "module": "pytest",
+        "args": ["tests/", "-v", "--tb=short"],
+        "cwd": "${workspaceFolder:⚙️  Backend (FastAPI)}",
+        "envFile": "${workspaceFolder:⚙️  Backend (FastAPI)}/.env",
+        "console": "integratedTerminal"
+      },
+      {
+        "name": "🌱 Seed Movies (20 pages)",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder:🎬 CineAI Root}/scripts/seed_movies.py",
+        "args": ["--pages", "20"],
+        "cwd": "${workspaceFolder:⚙️  Backend (FastAPI)}",
+        "envFile": "${workspaceFolder:⚙️  Backend (FastAPI)}/.env",
+        "console": "integratedTerminal"
+      }
+    ]
+  },
+
+  // ── Tasks (Ctrl+Shift+B or Terminal > Run Task) ────────────────────────────
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🐳 Start Infrastructure (Docker)",
+        "type": "shell",
+        "command": "docker compose up postgres qdrant redis -d",
+        "group": "build",
+        "presentation": { "reveal": "always", "panel": "shared" }
+      },
+      {
+        "label": "🐳 Stop Infrastructure (Docker)",
+        "type": "shell",
+        "command": "docker compose down",
+        "group": "build"
+      },
+      {
+        "label": "🔄 Run DB Migrations",
+        "type": "shell",
+        "command": "source .venv/bin/activate && alembic upgrade head",
+        "options": { "cwd": "${workspaceFolder:⚙️  Backend (FastAPI)}" },
+        "group": "build"
+      },
+      {
+        "label": "📦 Install Backend Deps",
+        "type": "shell",
+        "command": "source .venv/bin/activate && pip install torch==2.3.0 --index-url https://download.pytorch.org/whl/cpu && pip install -r requirements.txt",
+        "options": { "cwd": "${workspaceFolder:⚙️  Backend (FastAPI)}" },
+        "group": "build"
+      },
+      {
+        "label": "📦 Install Frontend Deps",
+        "type": "shell",
+        "command": "npm install",
+        "options": { "cwd": "${workspaceFolder:🖥️  Frontend (Next.js)}" },
+        "group": "build"
+      },
+      {
+        "label": "🔍 Frontend Type Check",
+        "type": "shell",
+        "command": "npm run type-check",
+        "options": { "cwd": "${workspaceFolder:🖥️  Frontend (Next.js)}" },
+        "group": "test"
+      },
+      {
+        "label": "🧹 Frontend Lint",
+        "type": "shell",
+        "command": "npm run lint",
+        "options": { "cwd": "${workspaceFolder:🖥️  Frontend (Next.js)}" },
+        "group": "test"
+      }
+    ]
+  }
+}

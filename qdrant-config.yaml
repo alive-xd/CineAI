@@ -1,0 +1,51 @@
+# qdrant-config.yaml
+# Qdrant production configuration.
+# Mounted at /qdrant/config/production.yaml in the container.
+# Reference: https://qdrant.tech/documentation/guides/configuration/
+
+service:
+  host: 0.0.0.0
+  http_port: 6333
+  grpc_port: 6334
+  # Disable gRPC if not needed
+  enable_tls: false
+
+storage:
+  # Storage path inside the container
+  storage_path: /qdrant/storage
+
+  # WAL (Write-Ahead Log) settings
+  wal:
+    wal_capacity_mb: 32
+
+  # Optimiser settings
+  optimizers:
+    # Start building HNSW index after this many vectors
+    # Lower = faster search, higher = faster inserts
+    indexing_threshold: 20000
+
+    # How much RAM to use for indexing (MB)
+    # Free-tier constraint: keep under 256MB
+    memmap_threshold: 200000
+
+  # HNSW index configuration
+  hnsw_index:
+    # Higher m = better recall, more memory. 16 is standard.
+    m: 16
+    # Higher = better recall at build time cost. 100 is good.
+    ef_construct: 100
+    # Search-time expansion — higher = better recall, slower
+    # Can be overridden per-query
+    ef: 128
+    # Use full precision for cosine similarity accuracy
+    full_scan_threshold: 10000
+
+  # Quantisation — reduces memory by 4x, ~5% recall loss
+  # Enable on free tier if running out of RAM
+  # quantization:
+  #   scalar:
+  #     type: int8
+  #     quantile: 0.99
+  #     always_ram: true
+
+log_level: INFO

@@ -216,6 +216,19 @@ External HTTPS connectivity issues solved via Cloudflare Worker proxy — zero a
 
 ---
 
+## Architecture Decisions
+
+A key focus of this project was to avoid over-engineering while building a production-ready system. Here are the core technical decisions:
+
+- **Why FastAPI?** For its native async support and extremely fast execution speed. Recommendations require gathering data from multiple sources concurrently (Qdrant, PostgreSQL, Redis). FastAPI handles these asynchronous I/O bound operations flawlessly while auto-generating our OpenAPI specs.
+- **Why Qdrant instead of FAISS?** While FAISS is incredibly fast for local vector indexing, Qdrant is built as a complete vector database with native metadata filtering, a robust REST/gRPC API, and excellent Docker support, making it far superior for a web-service architecture.
+- **Why PostgreSQL?** It is the most robust open-source relational database. We rely heavily on its JSONB support for storing complex user interactions, and standard relational constraints for ensuring data integrity across users, ratings, and watchlists.
+- **Why Redis?** Movie popularity and the base recommendation algorithms are computationally heavy but change slowly. Redis caches the final recommendation payloads, reducing the 50ms pipeline generation time down to a 2ms cache hit for active users.
+- **Why Sentence Transformers?** Specifically `all-MiniLM-L6-v2`. It produces incredibly dense 384-dimensional embeddings (compact enough to fit in RAM/VRAM) while matching the semantic quality of models 5x its size. It runs flawlessly on CPU in our Render deployment.
+- **Why hybrid recommendations instead of keyword-only search?** Keyword searches fail when users don't know the exact terms (e.g., "movies like Inception but sadder"). By combining Semantic (meaning), Content (metadata), Collaborative (behavior), and Popularity (baseline), the engine captures the nuance of human taste that single-algorithm systems miss.
+
+---
+
 ## Project Structure
 
 ```text

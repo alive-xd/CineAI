@@ -1,0 +1,83 @@
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.env
+!.env.example
+!.env.prod.example
+*.pyo
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── ML Models / Artifacts ──────────────────────────────────────────────────────
+# Don't commit downloaded models or trained artifacts
+*.pkl
+*.pt
+*.pth
+*.bin
+*.safetensors
+/tmp/cineai_*.pkl
+backend/.model_cache/
+
+# HuggingFace model cache (large, auto-downloaded on first run)
+# Uncomment if you DON'T want to cache models in repo:
+# .cache/
+
+# ── Node / Next.js ─────────────────────────────────────────────────────────────
+node_modules/
+.next/
+.nuxt/
+dist/
+.output/
+out/
+.cache/
+.parcel-cache/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend/.env.local
+frontend/.env.production
+!frontend/.env.example
+
+# ── Docker ─────────────────────────────────────────────────────────────────────
+.env.prod
+!.env.prod.example
+
+# ── IDE ────────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Logs ───────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Alembic ────────────────────────────────────────────────────────────────────
+# Keep migration files but ignore local alembic.ini overrides
+# alembic.ini is committed — local overrides should use env vars
+
+# ── Certificates ───────────────────────────────────────────────────────────────
+*.pem
+*.key
+*.crt
+*.csr
+nginx/certs/
+*.txt
+real_readme.md
