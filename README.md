@@ -13,7 +13,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql)](https://postgresql.org)
 [![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-dc244c?style=flat-square)](https://qdrant.tech)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker)](https://docker.com)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 <br/>
 
@@ -125,39 +125,33 @@ Final Score = (0.35 × Semantic) + (0.30 × Content) + (0.25 × Collaborative) +
 
 ---
 
-## Core Features
+## ✨ Core Capabilities
 
-### 🔍 AI Semantic Search
-Search using natural language instead of exact keywords. The query is encoded into a 384-dimensional vector and matched against the movie embedding space in Qdrant.
+### 🔍 Conversational Semantic Search
+Break free from rigid keyword constraints. Search for movies exactly how you would describe them to a friend. We instantly encode your query into a 384-dimensional vector space to find the perfect semantic match.
 
-```
-"movies about loneliness"          → Her, Lost in Translation, Aftersun
-"mind-bending thriller"            → Inception, Memento, Shutter Island
-"something like Interstellar"      → Arrival, Contact, 2001: A Space Odyssey
-"emotional sci-fi about grief"     → Annihilation, Arrival, Melancholia
-```
+> **"mind-bending thriller"** → *Inception, Memento, Shutter Island* <br/>
+> **"movies about loneliness"** → *Her, Lost in Translation, Aftersun* <br/>
+> **"emotional sci-fi about grief"** → *Annihilation, Arrival, Melancholia*
 
-### 🤖 Hybrid Recommendation Engine
-Four recommendation signals fused with learned per-user weights. Not a single algorithm — a weighted ensemble that adapts to each user.
+### 🤖 Adaptive Hybrid Engine
+Why rely on one algorithm when you can have an ensemble? CineAI dynamically fuses four distinct recommendation signals (Semantic, Content, Collaborative, and Popularity), automatically adjusting the mathematical weights to perfectly align with your unique cinematic taste.
 
-### 💡 Explainable AI
-Every recommendation includes human-readable reasoning:
-```
-✦ Matches your love of philosophical Sci-Fi
-✦ Directed by Denis Villeneuve — a director you rate highly
-✦ Similar emotional tone to movies you've rated 4.5+
-```
+### 💡 Transparent Explainability
+No more "black box" suggestions. Every movie recommendation comes with clear, human-readable reasoning drawn directly from the underlying algorithmic score attributions.
 
-### 🧠 User Taste Learning
-A continuous taste profile updates after every interaction:
-- Genre affinity weights per genre
-- Director affinity scores
-- Mood tag preferences
-- Embedding centroid (weighted average of rated movie vectors)
-- Per-user hybrid engine weights
+> ✦ *Matches your deep appreciation for philosophical Sci-Fi* <br/>
+> ✦ *Directed by Denis Villeneuve — a filmmaker you consistently rate highly* <br/>
+> ✦ *Shares a similar emotional tone with movies you've rated 4.5+*
 
-### ❄️ Cold-Start Handling
-New users receive trending + popular fallbacks until 5+ ratings are collected, at which point the full ML pipeline activates.
+### 🧠 Continuous Taste Learning
+Your profile is a living, breathing entity. Every rating, watchlist addition, and dismissal continuously refines your:
+- **Genre & Director Affinities**
+- **Mood Tag Preferences**
+- **Semantic Centroid** *(The weighted mathematical center of your favourite films)*
+
+### ❄️ Intelligent Cold-Start Resolution
+A seamless onboarding experience. Brand new users are greeted with a curated blend of trending and universally acclaimed titles. Once 5 ratings are collected, the full machine learning pipeline seamlessly takes over.
 
 ---
 
@@ -229,116 +223,64 @@ A key focus of this project was to avoid over-engineering while building a produ
 
 ---
 
-## Project Structure
+## 📂 Project Structure
+
+A clean, deeply decoupled layered architecture separating the Next.js presentation layer, FastAPI service backend, and ML pipeline.
 
 ```text
-CineAI/
-│
-├── backend/
-│   ├── app/
-│   │   ├── api/            # 18 REST endpoints (auth, movies, search, recs)
-│   │   ├── services/       # Business logic (movie, recommendation, auth)
-│   │   ├── models/         # SQLAlchemy ORM — 10 database tables
-│   │   ├── schemas/        # Pydantic v2 request/response schemas
-│   │   ├── ml/
-│   │   │   ├── embeddings/ # Encoder, pipeline, user profile centroid
-│   │   │   ├── recommenders/ # Semantic, content, collaborative, hybrid
-│   │   │   ├── explainability/ # Score attribution → human reasons
-│   │   │   └── feedback/   # Adaptive weight updater (EMA)
-│   │   └── core/           # Database, Redis, security, exceptions
-│   │
-│   ├── alembic/            # Database migrations
-│   └── requirements.txt
-│
-├── frontend/
-│   └── src/
-│       ├── app/            # Next.js App Router — 8 pages
-│       ├── components/     # 12 reusable UI components
-│       ├── hooks/          # SWR data hooks
-│       ├── lib/            # Typed API client, utilities
-│       └── store/          # Zustand auth store
-│
-├── scripts/
-│   ├── seed_movies.py      # Bulk TMDb ingest + embedding pipeline
-│   └── bootstrap.sh        # One-command local setup
-│
-├── assets/                 # README screenshots & diagrams
-└── docker-compose.yml      # Full stack orchestration
+📦 CineAI
+ ┣ 📂 backend/               # FastAPI Application & ML Pipeline
+ ┃ ┣ 📂 alembic/             # Database migrations
+ ┃ ┣ 📂 app/
+ ┃ ┃ ┣ 📂 api/               # REST endpoints (auth, movies, search, recs)
+ ┃ ┃ ┣ 📂 core/              # Database, Redis, security, exceptions
+ ┃ ┃ ┣ 📂 ml/
+ ┃ ┃ ┃ ┣ 📂 embeddings/      # Encoder, pipeline, user profile centroid
+ ┃ ┃ ┃ ┣ 📂 explainability/  # Score attribution → human reasoning
+ ┃ ┃ ┃ ┣ 📂 feedback/        # Adaptive weight updater (EMA)
+ ┃ ┃ ┃ ┗ 📂 recommenders/    # Semantic, content, collaborative, hybrid
+ ┃ ┃ ┣ 📂 models/            # SQLAlchemy ORM (10 tables)
+ ┃ ┃ ┣ 📂 schemas/           # Pydantic v2 schemas
+ ┃ ┃ ┗ 📂 services/          # Business logic layer
+ ┃ ┗ 📜 requirements.txt
+ ┣ 📂 frontend/              # Next.js 14 Application
+ ┃ ┗ 📂 src/
+ ┃   ┣ 📂 app/               # App Router & Pages
+ ┃   ┣ 📂 components/        # Reusable UI components
+ ┃   ┣ 📂 hooks/             # SWR data fetching hooks
+ ┃   ┣ 📂 lib/               # Typed API client & utilities
+ ┃   ┗ 📂 store/             # Zustand global state
+ ┣ 📂 scripts/               # Bootstrapping & seeding utilities
+ ┣ 📂 assets/                # Documentation assets
+ ┗ 📜 docker-compose.yml     # Complete stack orchestration
 ```
 
 ---
 
-## Future Roadmap
+## 🚀 Future Roadmap
 
-- [ ] User-to-user collaborative filtering
-- [ ] Conversational movie discovery (multi-turn)
-- [ ] Emotion and tone metadata enrichment
-- [ ] Upgrade embeddings to `bge-large-en` for better semantic quality
-- [ ] A/B testing framework for recommendation strategies
-- [ ] Social features — shared watchlists, friend recommendations
-- [ ] Mobile app (React Native)
-- [ ] Real-time recommendation updates via WebSocket
+Our vision for the next evolution of CineAI:
 
----
-
-## About the Creator
-
-<img src="https://avatars.githubusercontent.com/sushen-kumar" alt="Sushen Kumar" width="80" style="border-radius: 50%;" />
-
-## **Sushen Kumar** — Cybersecurity Researcher · Security Automation Engineer · AI Engineer
-
-Building intelligent security systems at the intersection of cybersecurity, automation, and artificial intelligence. Specialized in threat intelligence platforms, security tooling, AI-driven analysis, and scalable backend architectures designed to improve detection, investigation, and response capabilities across modern environments.
-
-CineAI showcases modern recommendation system design using semantic retrieval, vector databases, hybrid ranking, explainable AI, and adaptive user preference learning.
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sushen_Kumar-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/sushen-kumar/)
-[![Email](https://img.shields.io/badge/Email-sushen.d3v%40gmail.com-EA4335?style=flat-square&logo=gmail)](mailto:sushen.d3v@gmail.com)
-[![Instagram](https://img.shields.io/badge/Instagram-@sushen.pvt-E4405F?style=flat-square&logo=instagram)](https://instagram.com/sushen.pvt)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-alivexd-FFDD00?style=flat-square&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/alivexd)
+- **👥 Social & Collaborative:** User-to-user collaborative filtering, shared watchlists, and friend recommendations.
+- **💬 Conversational UI:** Multi-turn conversational movie discovery ("No, something a bit older than that").
+- **🎭 Enriched Metadata:** Deep emotion, pacing, and tone metadata enrichment.
+- **🧠 Advanced Embeddings:** Upgrading from `all-MiniLM-L6-v2` to `bge-large-en` for even richer semantic comprehension.
+- **📊 Experimentation:** Comprehensive A/B testing framework for evaluating recommendation strategies.
+- **📱 Mobile Experience:** Dedicated React Native application.
+- **⚡ Real-time Updates:** WebSocket integration for instantaneous recommendation refreshes.
 
 ---
 
-## Commercial Licensing
+## 📄 License
 
-> Commercial licensing for CineAI is available upon request.
+This project is licensed under the **MIT License**.
 
-The commercial package includes:
-
-- Complete FastAPI Backend
-- AI Recommendation Engine
-- Semantic Search Pipeline
-- Hybrid Recommendation System
-- Qdrant Integration
-- PostgreSQL Database Models
-- Redis Caching Layer
-- Next.js Frontend
-- Docker Configuration
-- Database Migrations
-- Seed & Utility Scripts
-- Architecture Documentation
-
-For licensing enquiries, partnerships, or commercial usage:
-
-📧 sushen.d3v@gmail.com
-
-💼 LinkedIn: https://www.linkedin.com/in/sushen-kumar/
-
-> Includes complete source code, setup documentation, and architecture walkthrough.
-
----
-
-## License
-
-CineAI is proprietary software.
-
-The source code, recommendation algorithms, machine learning pipeline, architecture, and supporting assets are protected and may not be reproduced, distributed, modified, or used commercially without explicit written permission.
-
-© 2026 Sushen Kumar. All rights reserved.
+See the [LICENSE](LICENSE) file for more details.
 
 ---
 
 <div align="center">
 
-*Built with FastAPI · Next.js · PostgreSQL · Redis · Qdrant · sentence-transformers*
+*Engineered with FastAPI · Next.js · PostgreSQL · Redis · Qdrant · sentence-transformers*
 
 </div>
